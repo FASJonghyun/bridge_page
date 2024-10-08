@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3  # 최신 버전 사용
       with:
-        node-version: '16'  # 또는 '20'으로 설정해도 무방합니다.
+        node-version: '16'  # Node.js 16 사용 (기본적으로 20으로 전환되기 때문에 명시적으로 설정)
 
     - name: Install dependencies
       run: npm install
