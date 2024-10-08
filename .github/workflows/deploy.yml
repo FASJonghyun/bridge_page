@@ -18,14 +18,19 @@ jobs:
       with:
         node-version: '16'  # Node.js 16 사용 (기본적으로 20으로 전환되기 때문에 명시적으로 설정)
 
+    - name: Change to project directory
+      run: cd bridge-page
+
     - name: Install dependencies
       run: npm install
+      working-directory: ./bridge-page  # 프로젝트 디렉토리에서 작업 수행
 
     - name: Build project
       run: npm run build
+      working-directory: ./bridge-page  # 프로젝트 디렉토리에서 빌드 수행
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+        publish_dir: ./bridge-page/build  # 빌드 결과물 경로 설정
