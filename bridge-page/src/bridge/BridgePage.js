@@ -7,35 +7,38 @@ function BridgePage() {
     }, []);
 
     useEffect(() => {
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    
-        if (/android/i.test(userAgent)) {
-          // Android 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
-          const iframe = document.createElement("iframe");
-          iframe.style.display = "none";
-        //   iframe.src = "fashionandstyle://";
-          iframe.src = "https://www.fashionandstyle.com";
-          document.body.appendChild(iframe);
-          setTimeout(() => {
-            window.location = "https://play.google.com/store/apps/details?id=com.fas.android";
-          }, 2000);
-        } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-          // iOS 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
-          const iframe = document.createElement("iframe");
-          iframe.style.display = "none";
-          alert(1);
-          window.location = "https://www.fashionandstyle.com";
-          alert(2);
-          const link = document.getElementById("moveToAPP");
-          link.click();
-          window.open("https://www.fashionandstyle.com", "_self");
-          alert(3);
-          window.location.replace("https://www.fashionandstyle.com");
-          document.body.appendChild(iframe);
-          setTimeout(() => {
-            window.location.href = "https://apps.apple.com/app/id1620312420";
-          }, 2000);
-        }
+        window.onload(() => {
+
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+            if (/android/i.test(userAgent)) {
+              // Android 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
+              const iframe = document.createElement("iframe");
+              iframe.style.display = "none";
+            //   iframe.src = "fashionandstyle://";
+              iframe.src = "https://www.fashionandstyle.com";
+              document.body.appendChild(iframe);
+              setTimeout(() => {
+                window.location = "https://play.google.com/store/apps/details?id=com.fas.android";
+              }, 2000);
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+              // iOS 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
+              const iframe = document.createElement("iframe");
+              iframe.style.display = "none";
+              alert(1);
+              window.location = "https://www.fashionandstyle.com";
+              alert(2);
+              const link = document.getElementById("moveToAPP");
+              link.click();
+              window.open("https://www.fashionandstyle.com", "_self");
+              alert(3);
+              window.location.replace("https://www.fashionandstyle.com");
+              document.body.appendChild(iframe);
+              setTimeout(() => {
+                window.location.href = "https://apps.apple.com/app/id1620312420";
+              }, 2000);
+            }
+        });
     }, []);
 
 
