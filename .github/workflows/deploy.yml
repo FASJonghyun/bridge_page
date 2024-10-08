@@ -3,7 +3,7 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # main 브랜치에 푸시될 때 배포하도록 설정
 
 jobs:
   build-and-deploy:
@@ -11,12 +11,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4  # 최신 버전 사용
 
     - name: Setup Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # 최신 버전 사용
       with:
-        node-version: '16'
+        node-version: '16'  # 또는 '20'으로 설정해도 무방합니다.
 
     - name: Install dependencies
       run: npm install
