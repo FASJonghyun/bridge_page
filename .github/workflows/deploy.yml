@@ -16,10 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3  # 최신 버전 사용
       with:
-        node-version: '16'  # Node.js 16 사용 (기본적으로 20으로 전환되기 때문에 명시적으로 설정)
-
-    - name: Change to project directory
-      run: cd bridge-page
+        node-version: '20'  # Node.js 20 사용
 
     - name: Install dependencies
       run: npm install
@@ -30,7 +27,9 @@ jobs:
       working-directory: ./bridge-page  # 프로젝트 디렉토리에서 빌드 수행
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4  # 최신 버전 사용
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./bridge-page/build  # 빌드 결과물 경로 설정
+        publish_branch: gh-pages  # 배포할 브랜치를 설정
+        force_orphan: true  # 고아 브랜치로 강제 푸시
