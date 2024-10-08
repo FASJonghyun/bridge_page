@@ -11,42 +11,32 @@ function BridgePage() {
     
         if (/android/i.test(userAgent)) {
           // Android 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
-          window.location = "fashionandstyle://";
+          const iframe = document.createElement("iframe");
+          iframe.style.display = "none";
+          iframe.src = "fashionandstyle://";
+          document.body.appendChild(iframe);
           setTimeout(() => {
             window.location = "https://play.google.com/store/apps/details?id=com.fas.android";
             setTimeout(() => {
-                window.close();
+              window.close();
             }, 500);
           }, 2000);
         } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
           // iOS 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
-          window.location = "fashionandstyle://";
+          const iframe = document.createElement("iframe");
+          iframe.style.display = "none";
+          iframe.src = "fashionandstyle://";
+          document.body.appendChild(iframe);
           setTimeout(() => {
             window.location = "https://apps.apple.com/app/id1620312420";
             setTimeout(() => {
-                window.close();
+              window.close();
             }, 500);
           }, 2000);
         }
-      }, []);
+    }, []);
+    
 
-    // const handleLinkClick = () => {
-    //     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    //     if (/android/i.test(userAgent)) {
-    //         // Android 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
-    //         window.location = "fashionandstyle://";
-    //         setTimeout(() => {
-    //             window.location = "https://play.google.com/store/apps/details?id=com.fas.android";
-    //         }, 2000);
-    //     } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    //         // iOS 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
-    //         window.location = "fashionandstyle://";
-    //         setTimeout(() => {
-    //             window.location = "https://apps.apple.com/app/id1620312420";
-    //         }, 2000);
-    //     }
-    // };
 
     return(
         <>
