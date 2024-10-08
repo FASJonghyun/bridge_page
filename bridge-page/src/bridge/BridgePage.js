@@ -25,7 +25,7 @@ function BridgePage() {
           iframe.style.display = "none";
           alert(1);
         //   iframe.src = "fashionandstyle://";
-          iframe.src = "https://www.fashionandstyle.com";
+          window.location = "https://www.fashionandstyle.com";
           alert(2);
 
           document.body.appendChild(iframe);
