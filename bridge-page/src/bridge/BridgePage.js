@@ -38,7 +38,7 @@ function BridgePage() {
       const iframe = document.createElement("iframe");
       iframe.style.display = "none";
       alert(1);
-      window.location = "https://www.fashionandstyle.com";
+      window.location.href = "fashionandstyle://";
       alert(2);
       const link = document.getElementById("moveToAPP");
       alert(link.href);
