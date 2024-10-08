@@ -23,9 +23,12 @@ function BridgePage() {
           // iOS 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
           const iframe = document.createElement("iframe");
           iframe.style.display = "none";
-        //   iframe.src = "fashionandstyle://";
+          alert(1);
           window.location.href = "https://www.fashionandstyle.com";
-
+          alert(2);
+          window.open("https://www.fashionandstyle.com", "_self");
+          alert(3);
+          window.location.replace("https://www.fashionandstyle.com");
           document.body.appendChild(iframe);
           setTimeout(() => {
             window.location.href = "https://apps.apple.com/app/id1620312420";
