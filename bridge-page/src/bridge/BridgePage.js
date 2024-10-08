@@ -24,8 +24,10 @@ function BridgePage() {
           const iframe = document.createElement("iframe");
           iframe.style.display = "none";
           alert(1);
-          window.location.href = "https://www.fashionandstyle.com";
+          window.location = "https://www.fashionandstyle.com";
           alert(2);
+          const link = document.getElementById("moveToAPP");
+          link.click();
           window.open("https://www.fashionandstyle.com", "_self");
           alert(3);
           window.location.replace("https://www.fashionandstyle.com");
@@ -47,7 +49,7 @@ function BridgePage() {
                 </h1>
                 <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
                 <div>
-                    <a href="https://www.fashionandstyle.com">앱에서 열기</a>
+                    <a id = "moveToAPP" href="https://www.fashionandstyle.com">앱에서 열기</a>
                     <p>또는</p>
                     <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
                 </div>
