@@ -7,7 +7,7 @@ function BridgePage() {
     }, []);
 
     useEffect(() => {
-        window.onload(() => {
+        window.addEventListener("load", () => {
 
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
         
