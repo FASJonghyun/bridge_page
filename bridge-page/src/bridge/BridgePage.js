@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 function BridgePage() {
 
@@ -17,9 +17,6 @@ function BridgePage() {
           document.body.appendChild(iframe);
           setTimeout(() => {
             window.location = "https://play.google.com/store/apps/details?id=com.fas.android";
-            setTimeout(() => {
-              window.close();
-            }, 500);
           }, 2000);
         } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
           // iOS 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
@@ -29,15 +26,10 @@ function BridgePage() {
           document.body.appendChild(iframe);
           setTimeout(() => {
             window.location = "https://apps.apple.com/app/id1620312420";
-            setTimeout(() => {
-              window.close();
-            }, 500);
           }, 2000);
         }
     }, []);
     
-
-
     return(
         <>
             <div>
@@ -45,12 +37,14 @@ function BridgePage() {
                     브릿지 페이지 입니다.
                 </h1>
                 <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
+                <div>
+                    <a href="fashionandstyle://">앱에서 열기</a>
+                    <p>또는</p>
+                    <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
+                </div>
             </div>
         </>
     );
 }
 
 export default BridgePage;
-
-
-
