@@ -41,6 +41,7 @@ function BridgePage() {
       window.location = "https://www.fashionandstyle.com";
       alert(2);
       const link = document.getElementById("moveToAPP");
+      alert(link.href);
       link.click();
       window.open("https://www.fashionandstyle.com", "_self");
       alert(3);
