@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 function BridgePage() {
   const [showModal, setShowModal] = useState(false);
