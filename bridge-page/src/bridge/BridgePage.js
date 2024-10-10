@@ -30,7 +30,8 @@ function BridgePage() {
       // 기타 인앱 브라우저 처리
       if (/iphone|ipad|ipod/i.test(userAgent)) {
         // iOS의 경우 Safari로 열도록 안내 메시지 표시
-        setShowSafariMessage(true);
+        // setShowSafariMessage(true);
+        window.location.href = 'https://www.fashionandstyle.com';
       } else {
         // Android의 경우 Chrome으로 열기
         window.location.href = 'intent://' + targetUrl.replace(/https?:\/\//i, '') + '#Intent;scheme=http;package=com.android.chrome;end';
