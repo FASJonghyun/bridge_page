@@ -11,6 +11,13 @@ function BridgePage() {
   const handlePageLoad = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
+
+    // 인앱 브라우저 여부 확인 (페이스북, 인스타그램 등의 인앱 브라우저)
+    if (userAgent.includes("FBAN") || userAgent.includes("FBAV") || userAgent.includes("Instagram")) {
+        window.location.href = "https://www.fashionandstyle.com"; // 외부 브라우저로 이동
+        return;
+    }
+
     if (/android/i.test(userAgent)) {
       // Android 사용자일 경우 딥링크 시도 후 앱 스토어로 리다이렉트
       window.location = "fashionandstyle://";
