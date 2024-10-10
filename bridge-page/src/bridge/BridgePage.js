@@ -81,7 +81,7 @@ function BridgePage() {
       }, 2000);
     } else {
       // 그 외의 경우 처리
-      window.location.href = "https://www.fashionandstyle.com";
+    //   window.location.href = "https://www.fashionandstyle.com";
     }
   };
 
