@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function BridgePage() {
   const [showModal, setShowModal] = useState(false);
-  const [showSafariMessage, setShowSafariMessage] = useState(false);
+//   const [showSafariMessage, setShowSafariMessage] = useState(false);
 
   useEffect(() => {
     document.title = "패션&스타일";
@@ -87,43 +87,7 @@ function BridgePage() {
 
   return (
     <>
-      <div>
-        {showSafariMessage ? (
-          // Safari로 안내하는 메시지 표시
-          <div>
-            <h2 style={{ paddingTop: '50px', textAlign: 'center' }}>
-              인앱브라우저 호환 문제로 인해<br />Safari로 접속해야 합니다.
-            </h2>
-            <article style={{ textAlign: 'center', fontSize: '17px', wordBreak: 'keep-all', color: '#999' }}>
-              아래 버튼을 눌러 Safari를 실행해주세요.<br />
-              Safari가 열리면 주소창을 길게 터치한 뒤,<br />
-              '붙여넣기 및 이동'을 누르면 정상적으로 이용할 수 있습니다.<br /><br />
-              <button
-                onClick={redirectToSafari}
-                style={{
-                  minWidth: '180px',
-                  marginTop: '10px',
-                  height: '54px',
-                  fontWeight: '700',
-                  backgroundColor: '#31408E',
-                  color: '#fff',
-                  borderRadius: '4px',
-                  fontSize: '17px',
-                  border: '0',
-                }}
-              >
-                Safari로 열기
-              </button>
-            </article>
-            <img
-              style={{ width: '70%', margin: '50px 15% 0 15%' }}
-              src='https://tistory3.daumcdn.net/tistory/1893869/skin/images/inappbrowserout.jpeg'
-              alt='Safari 안내 이미지'
-            />
-          </div>
-        ) : (
-          // 기본 브릿지 페이지 내용
-          <div>
+       <div>
             <h1>브릿지 페이지 입니다.</h1>
             <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
             {showModal && (
@@ -142,8 +106,6 @@ function BridgePage() {
               <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
             </div>
           </div>
-        )}
-      </div>
     </>
   );
 }
