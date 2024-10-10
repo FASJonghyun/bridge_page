@@ -32,7 +32,7 @@ function BridgePage() {
         // iOS의 경우 Safari로 열도록 안내 메시지 표시
         // setShowSafariMessage(true);
         // window.location.href = 'x-web-search://?';
-        window.location.href = 'fashionandstyle://?';
+        window.location.href = 'https://www.fashionandstyle.com';
         setTimeout(() => {
             setShowModal(true); // 딥링크 실패 시 모달 표시
             window.location.href.replace("https://www.fashionandstyle.com");
