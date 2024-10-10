@@ -31,6 +31,27 @@ function BridgePage() {
       } else {
         window.location.href = targetUrl + '?openExternalBrowser=1';
       }
+    } else if (document.referrer.includes('instagram.com')){
+        const externalUrl = 'https://www.fashionandstyle.com';
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        if (/android/i.test(userAgent)) {
+        // Android 용 인텐트 스킴 (Chrome)
+        window.location.href = 'intent://' + externalUrl.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        } else if (/iphone|ipad|ipod/i.test(userAgent)) {
+        // iOS 용 커스텀 URL 스킴 (Chrome)
+        window.location.href = 'googlechrome://' + externalUrl.replace(/^https?:\/\//i, '');
+        // window.location.href = externalUrl;
+        } else {
+        // 일반적인 리디렉션 시도
+        window.location.href = externalUrl;
+        }
+
+        // 리디렉션 실패 시 사용자에게 안내 메시지 표시
+        setTimeout(() => {
+        setShowModal(true);
+        window.location.replace(externalUrl);
+        }, 2000);
     } else if (userAgent.match(inAppBrowserPattern)) {
       // 기타 인앱 브라우저 처리
       if (/iphone|ipad|ipod/i.test(userAgent)) {
