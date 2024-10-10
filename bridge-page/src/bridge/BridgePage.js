@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
 
 function BridgePage() {
   const [showModal, setShowModal] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     document.title = "패션&스타일";
     handlePageLoad();
   }, []);
+
+
+  useEffect(() => {
+    // react-snap이 프리렌더링 중인지 감지
+    if (!window.__PRERENDER_INJECTED) {
+      handlePageLoad();
+    }
+  }, [location]);
 
   const handlePageLoad = () => {
     const userAgent = navigator.userAgent.toLowerCase();
