@@ -16,10 +16,10 @@ function BridgePage() {
     const inAppBrowserPattern = /kakaotalk|line|inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|whale|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill|samsungbrowser\/[^1]/i;
 
 
-    if (document.referrer.includes('instagram.com')) {
-        // 인스타그램 인앱 브라우저에서 열림
-        redirectFromInstagram()
-    }
+    // if (document.referrer.includes('instagram.com')) {
+    //     // 인스타그램 인앱 브라우저에서 열림
+    //     redirectFromInstagram()
+    // }
 
     if (userAgent.match(/kakaotalk/i)) {
       // 카카오톡 외부 브라우저로 열기
@@ -63,27 +63,27 @@ function BridgePage() {
   };
 
 
-  const redirectFromInstagram = () => {
-    const externalUrl = 'https://www.fashionandstyle.com';
-    const userAgent = navigator.userAgent.toLowerCase();
+//   const redirectFromInstagram = () => {
+//     const externalUrl = 'https://www.fashionandstyle.com';
+//     const userAgent = navigator.userAgent.toLowerCase();
 
-    if (/android/i.test(userAgent)) {
-      // Android 용 인텐트 스킴 (Chrome)
-      window.location.href = 'intent://' + externalUrl.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
-    } else if (/iphone|ipad|ipod/i.test(userAgent)) {
-      // iOS 용 커스텀 URL 스킴 (Chrome)
-      window.location.href = 'googlechrome://' + externalUrl.replace(/^https?:\/\//i, '');
-    } else {
-      // 일반적인 리디렉션 시도
-      window.location.href = externalUrl;
-    }
+//     if (/android/i.test(userAgent)) {
+//       // Android 용 인텐트 스킴 (Chrome)
+//       window.location.href = 'intent://' + externalUrl.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+//     } else if (/iphone|ipad|ipod/i.test(userAgent)) {
+//       // iOS 용 커스텀 URL 스킴 (Chrome)
+//       window.location.href = 'googlechrome://' + externalUrl.replace(/^https?:\/\//i, '');
+//     } else {
+//       // 일반적인 리디렉션 시도
+//       window.location.href = externalUrl;
+//     }
 
-    // 리디렉션 실패 시 사용자에게 안내 메시지 표시
-    setTimeout(() => {
-      setShowModal(true);
-      window.location.replace(externalUrl);
-    }, 2000);
-  };
+//     // 리디렉션 실패 시 사용자에게 안내 메시지 표시
+//     setTimeout(() => {
+//       setShowModal(true);
+//       window.location.replace(externalUrl);
+//     }, 2000);
+//   };
 
   const handleStoreRedirect = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
