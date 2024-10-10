@@ -69,21 +69,21 @@ function BridgePage() {
   };
 
   // Safari로 리다이렉트하는 함수
-  const redirectToSafari = () => {
-    copyToClipboard(window.location.href);
-    alert('URL 주소가 복사되었습니다.\n\nSafari가 열리면 주소창을 길게 터치한 뒤, "붙여넣기 및 이동"을 누르면 정상적으로 이용하실 수 있습니다.');
-    window.location.href = 'x-web-search://?';
-  };
+//   const redirectToSafari = () => {
+//     copyToClipboard(window.location.href);
+//     alert('URL 주소가 복사되었습니다.\n\nSafari가 열리면 주소창을 길게 터치한 뒤, "붙여넣기 및 이동"을 누르면 정상적으로 이용하실 수 있습니다.');
+//     window.location.href = 'x-web-search://?';
+//   };
 
-  // 클립보드에 텍스트를 복사하는 함수
-  const copyToClipboard = (text) => {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-  };
+//   // 클립보드에 텍스트를 복사하는 함수
+//   const copyToClipboard = (text) => {
+//     const textarea = document.createElement("textarea");
+//     textarea.value = text;
+//     document.body.appendChild(textarea);
+//     textarea.select();
+//     document.execCommand('copy');
+//     document.body.removeChild(textarea);
+//   };
 
   return (
     <>
