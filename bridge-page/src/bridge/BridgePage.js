@@ -15,6 +15,12 @@ function BridgePage() {
     // 인앱 브라우저 감지 정규식 패턴
     const inAppBrowserPattern = /kakaotalk|line|inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|whale|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill|samsungbrowser\/[^1]/i;
 
+
+    if (document.referrer.includes('instagram.com')) {
+        // 인스타그램 인앱 브라우저에서 열림
+        alert('is INSTAGRAM!!');
+    }
+
     if (userAgent.match(/kakaotalk/i)) {
       // 카카오톡 외부 브라우저로 열기
       window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(targetUrl);
