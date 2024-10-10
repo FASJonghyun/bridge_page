@@ -48,8 +48,8 @@ function BridgePage() {
     //   window.location.replace("https://www.fashionandstyle.com");
     //   document.body.appendChild(iframe);
       setTimeout(() => {
-        // window.location.href = "https://apps.apple.com/app/id1620312420";
-        window.location.href = "https://www.fashionandstyle.com";
+        window.location.href = "https://apps.apple.com/app/id1620312420";
+        // window.location.href = "https://www.fashionandstyle.com";
       }, 2000);
     }
   };
