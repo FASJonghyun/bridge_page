@@ -40,7 +40,7 @@ function BridgePage() {
         window.location.href = 'intent://' + externalUrl.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
         } else if (/iphone|ipad|ipod/i.test(userAgent)) {
         // iOS 용 커스텀 URL 스킴 (Chrome)
-        window.location.href = 'googlechrome://' + externalUrl.replace(/^https?:\/\//i, '');
+        window.location.href = 'fashionandstyle://' + externalUrl.replace(/^https?:\/\//i, '');
         // window.location.href = externalUrl;
         } else {
         // 일반적인 리디렉션 시도
