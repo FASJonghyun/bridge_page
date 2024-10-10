@@ -10,21 +10,34 @@ function BridgePage() {
 
   const handlePageLoad = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
+  
+    // 인앱 브라우저 여부 확인 (페이스북, 인스타그램 등의 인앱 브라우저)
+    if (userAgent.includes("FBAN") || userAgent.includes("FBAV") || userAgent.includes("Instagram")) {
+      window.location.href = "https://www.fashionandstyle.com"; // 외부 브라우저로 이동
+      return;
+    }
+  
     if (/android/i.test(userAgent)) {
-      // Android 사용자일 경우 딥링크 시도 후 앱 스토어로 리다이렉트
-      window.location = "fashionandstyle://";
+      // Android 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
+      const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = "fashionandstyle://";
+      document.body.appendChild(iframe);
       setTimeout(() => {
-        setShowModal(true); // 딥링크 실패 시 모달을 띄워 사용자를 안내
+        window.location = "https://play.google.com/store/apps/details?id=com.fas.android";
       }, 2000);
     } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      // iOS 사용자일 경우 딥링크 시도 후 앱 스토어로 리다이렉트
-      window.location = "fashionandstyle://";
+      // iOS 사용자일 경우 딥링크를 시도하고, 앱 스토어로 리다이렉트
+      const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = "fashionandstyle://";
+      document.body.appendChild(iframe);
       setTimeout(() => {
-        setShowModal(true); // 딥링크 실패 시 모달을 띄워 사용자를 안내
+        window.location.href = "https://apps.apple.com/app/id1620312420";
       }, 2000);
     }
   };
+  
 
   const handleStoreRedirect = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
