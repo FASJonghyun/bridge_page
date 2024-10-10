@@ -30,7 +30,8 @@ function BridgePage() {
       // 기타 인앱 브라우저 처리
       if (/iphone|ipad|ipod/i.test(userAgent)) {
         // iOS의 경우 Safari로 열도록 안내 메시지 표시
-        setShowSafariMessage(true);
+        // setShowSafariMessage(true);
+        window.location.href = 'x-web-search://?';
         setTimeout(() => {
             setShowModal(true); // 딥링크 실패 시 모달 표시
             window.location.href.replace("https://www.fashionandstyle.com");
