@@ -29,7 +29,7 @@ function BridgePage() {
       // 기타 인앱 브라우저 처리
       if (/iphone|ipad|ipod/i.test(userAgent)) {
         // iOS의 경우 유니버설 링크로 이동
-        window.location.href = 'https://www.fashionandstyle.com/somepath';
+        window.location.href = 'https://www.fashionandstyle.com/';
         setTimeout(() => {
           setShowModal(true); // 유니버설 링크 실패 시 모달 표시
           window.location.replace("https://www.fashionandstyle.com");
@@ -40,13 +40,13 @@ function BridgePage() {
       }
     } else if (/android/i.test(userAgent)) {
       // 일반 Android 사용자 유니버설 링크 시도
-      window.location.href = 'https://www.fashionandstyle.com/somepath';
+      window.location.href = 'https://www.fashionandstyle.com/';
       setTimeout(() => {
         setShowModal(true); // 유니버설 링크 실패 시 모달 표시
       }, 2000);
     } else if (/iphone|ipad|ipod/.test(userAgent) && !window.MSStream) {
       // 일반 iOS 사용자 유니버설 링크 시도
-      window.location.href = 'https://www.fashionandstyle.com/somepath';
+      window.location.href = 'https://www.fashionandstyle.com/';
       setTimeout(() => {
         setShowModal(true); // 유니버설 링크 실패 시 모달 표시
       }, 2000);
@@ -82,7 +82,7 @@ function BridgePage() {
           </div>
         )}
         <div>
-          <a id="moveToAPP" href="https://www.fashionandstyle.com/somepath">앱에서 열기</a>
+          <a id="moveToAPP" href="https://www.fashionandstyle.com/">앱에서 열기</a>
           <p>또는</p>
           <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
         </div>
