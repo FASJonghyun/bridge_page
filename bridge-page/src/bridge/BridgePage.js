@@ -21,7 +21,8 @@ function BridgePage() {
 
     if (userAgent.match(/kakaotalk/i)) {
       // 카카오톡 외부 브라우저로 열기
-      window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(targetUrl);
+    //   window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(targetUrl);
+        window.location.href = 'fashionandstyle://' + externalUrl.replace(/^https?:\/\//i, '');
     } else if (userAgent.match(/line/i)) {
       // 라인 외부 브라우저로 열기
       if (targetUrl.indexOf('?') !== -1) {
