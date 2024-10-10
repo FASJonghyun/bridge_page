@@ -98,7 +98,7 @@ function BridgePage() {
   return (
     <>
       <Helmet>
-        <meta property="og:title" content="패션&스타일" />
+        <meta property="og:title" content="패션&스타일2" />
         <meta property="og:description" content="최신 패션과 스타일을 만나보세요." />
         <meta property="og:image" content="https://d1yzfoqf37d0dc.cloudfront.net/media/admin/post_images/2024/09/24/5c4d9419-b55e-42c8-8dcf-212a5187b163_20240924124908.jpg" />
         <meta property="og:url" content={window.location.href} />
