@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/bridge" element={<BridgePage />} />
+          <Route path="/bridge_page/" element={<BridgePage />} />
           <Route path="/" element={<BridgePage />} /> {/* 홈 경로 */}
           {/* 필요한 다른 라우트 추가 */}
         </Routes>
