@@ -16,10 +16,8 @@ function BridgePage() {
     const inAppBrowserPattern = /kakaotalk|line|inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|whale|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill|samsungbrowser\/[^1]/i;
 
 
-    // if (document.referrer.includes('instagram.com')) {
-    //     // 인스타그램 인앱 브라우저에서 열림
-    //     redirectFromInstagram()
-    // }
+    const externalUrl = 'https://www.fashionandstyle.com';
+    // const userAgent = navigator.userAgent.toLowerCase();
 
     if (userAgent.match(/kakaotalk/i)) {
       // 카카오톡 외부 브라우저로 열기
@@ -27,13 +25,15 @@ function BridgePage() {
     } else if (userAgent.match(/line/i)) {
       // 라인 외부 브라우저로 열기
       if (targetUrl.indexOf('?') !== -1) {
-        window.location.href = targetUrl + '&openExternalBrowser=1';
+        // window.location.href = targetUrl + '&openExternalBrowser=1';
+        window.location.href = 'fashionandstyle://' + externalUrl.replace(/^https?:\/\//i, '');
       } else {
-        window.location.href = targetUrl + '?openExternalBrowser=1';
+        // window.location.href = targetUrl + '?openExternalBrowser=1';
+        window.location.href = 'fashionandstyle://' + externalUrl.replace(/^https?:\/\//i, '');
       }
     } else if (document.referrer.includes('instagram.com')){
-        const externalUrl = 'https://www.fashionandstyle.com';
-        const userAgent = navigator.userAgent.toLowerCase();
+        // const externalUrl = 'https://www.fashionandstyle.com';
+        // const userAgent = navigator.userAgent.toLowerCase();
 
         if (/android/i.test(userAgent)) {
         // Android 용 인텐트 스킴 (Chrome)
