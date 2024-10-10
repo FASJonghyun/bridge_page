@@ -3,11 +3,6 @@ import React, { useEffect, useState, useCallback } from "react";
 function BridgePage() {
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    document.title = "패션&스타일";
-    handlePageLoad();
-  }, [handlePageLoad]);
-
   const handlePageLoad = useCallback(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     const targetUrl = window.location.href;
@@ -58,6 +53,12 @@ function BridgePage() {
       window.location.href = "https://www.fashionandstyle.com";
     }
   }, []);
+  
+  useEffect(() => {
+    document.title = "패션&스타일";
+    handlePageLoad();
+  }, [handlePageLoad]);
+
 
   const redirectFromInstagram = () => {
     const externalUrl = 'https://www.fashionandstyle.com';
