@@ -24,10 +24,8 @@
     "postBuild": "react-snap"
   },
   "reactSnap": {
-    "include": [
-      "/",
-      "/bridge_page/"
-    ]
+  "inlineCss": true,
+  "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"]
   },
   "eslintConfig": {
     "extends": [
