@@ -14,7 +14,11 @@ function BridgePage() {
 
     // 인앱 브라우저 여부 확인 (페이스북, 인스타그램 등의 인앱 브라우저)
     if (userAgent.includes("FBAN") || userAgent.includes("FBAV") || userAgent.includes("Instagram")) {
-        window.location.href = "https://www.fashionandstyle.com"; // 외부 브라우저로 이동
+        window.location.href = "fashionandstyle://";
+        setTimeout(() => {
+            // 딥링크 실패 시 외부 브라우저로 리다이렉트
+            window.location.href = "https://www.fashionandstyle.com";
+        }, 2000);
         return;
     }
 
