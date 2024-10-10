@@ -113,6 +113,7 @@ function BridgePage() {
         <meta property="og:image" content="https://d1yzfoqf37d0dc.cloudfront.net/media/admin/post_images/2024/09/24/5c4d9419-b55e-42c8-8dcf-212a5187b163_20240924124908.jpg" />
         <meta property="og:url" content="https://www.fashionandstyle.com" />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
         <title>패션&스타일</title>
       </Helmet>
       <div>
