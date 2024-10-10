@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 function BridgePage() {
   const [showModal, setShowModal] = useState(false);
@@ -40,7 +41,7 @@ function BridgePage() {
         // Android 용 인텐트 스킴 (Chrome)
         window.location.href = 'intent://' + externalUrl.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
         } else if (/iphone|ipad|ipod/i.test(userAgent)) {
-        // iOS 용 커스텀 URL 스킴 (Chrome)
+        // iOS 용 커스텀 URL 스킴
         window.location.href = 'fashionandstyle://' + externalUrl.replace(/^https?:\/\//i, '');
         // window.location.href = externalUrl;
         } else {
@@ -84,29 +85,6 @@ function BridgePage() {
     }
   };
 
-
-//   const redirectFromInstagram = () => {
-//     const externalUrl = 'https://www.fashionandstyle.com';
-//     const userAgent = navigator.userAgent.toLowerCase();
-
-//     if (/android/i.test(userAgent)) {
-//       // Android 용 인텐트 스킴 (Chrome)
-//       window.location.href = 'intent://' + externalUrl.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
-//     } else if (/iphone|ipad|ipod/i.test(userAgent)) {
-//       // iOS 용 커스텀 URL 스킴 (Chrome)
-//       window.location.href = 'googlechrome://' + externalUrl.replace(/^https?:\/\//i, '');
-//     } else {
-//       // 일반적인 리디렉션 시도
-//       window.location.href = externalUrl;
-//     }
-
-//     // 리디렉션 실패 시 사용자에게 안내 메시지 표시
-//     setTimeout(() => {
-//       setShowModal(true);
-//       window.location.replace(externalUrl);
-//     }, 2000);
-//   };
-
   const handleStoreRedirect = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -119,6 +97,13 @@ function BridgePage() {
 
   return (
     <>
+      <Helmet>
+        <meta property="og:title" content="패션&스타일" />
+        <meta property="og:description" content="최신 패션과 스타일을 만나보세요." />
+        <meta property="og:image" content="https://d1yzfoqf37d0dc.cloudfront.net/media/admin/post_images/2024/09/24/5c4d9419-b55e-42c8-8dcf-212a5187b163_20240924124908.jpg" />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="테스트용"/>
+      </Helmet>
       <div>
         <h1>브릿지 페이지 입니다.</h1>
         <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
