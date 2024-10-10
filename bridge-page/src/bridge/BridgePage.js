@@ -53,14 +53,14 @@ function BridgePage() {
       window.location.href = "https://www.fashionandstyle.com";
     }
   }, []);
-  
+
   useEffect(() => {
     document.title = "패션&스타일";
     handlePageLoad();
   }, [handlePageLoad]);
 
 
-  const redirectFromInstagram = () => {
+  const redirectFromInstagram = useCallback(() => {
     const externalUrl = 'https://www.fashionandstyle.com';
     const userAgent = navigator.userAgent.toLowerCase();
 
@@ -68,8 +68,8 @@ function BridgePage() {
       // Android 용 인텐트 스킴 (Chrome)
       window.location.href = 'intent://' + externalUrl.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
     } else if (/iphone|ipad|ipod/i.test(userAgent)) {
-      // iOS 용 커스텀 URL 스킴 (Chrome)
-      window.location.href = 'googlechrome://' + externalUrl.replace(/^https?:\/\//i, '');
+      // iOS 용 Safari로 리디렉션 (Chrome 대신 Safari 사용)
+      window.location.href = externalUrl;
     } else {
       // 일반적인 리디렉션 시도
       window.location.href = externalUrl;
@@ -80,7 +80,7 @@ function BridgePage() {
       setShowModal(true);
       window.location.replace(externalUrl);
     }, 2000);
-  };
+  }, []);
 
   const handleStoreRedirect = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
