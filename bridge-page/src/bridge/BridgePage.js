@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function BridgePage() {
   const [showModal, setShowModal] = useState(false);
+  const [showSafariMessage, setShowSafariMessage] = useState(false);
 
   useEffect(() => {
     document.title = "패션&스타일";
@@ -9,31 +10,46 @@ function BridgePage() {
   }, []);
 
   const handlePageLoad = () => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const userAgent = navigator.userAgent.toLowerCase();
+    const targetUrl = window.location.href;
 
+    // 인앱 브라우저 감지 정규식 패턴
+    const inAppBrowserPattern = /kakaotalk|line|inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|whale|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill|samsungbrowser\/[^1]/i;
 
-    // 인앱 브라우저 여부 확인 (페이스북, 인스타그램 등의 인앱 브라우저)
-    if (userAgent.includes("FBAN") || userAgent.includes("FBAV") || userAgent.includes("Instagram")) {
-        window.location.href = "fashionandstyle://";
-        setTimeout(() => {
-            // 딥링크 실패 시 외부 브라우저로 리다이렉트
-            window.location.href = "https://www.fashionandstyle.com";
-        }, 2000);
-        return;
-    }
-
-    if (/android/i.test(userAgent)) {
-      // Android 사용자일 경우 딥링크 시도 후 앱 스토어로 리다이렉트
-      window.location = "fashionandstyle://";
+    if (userAgent.match(/kakaotalk/i)) {
+      // 카카오톡 외부 브라우저로 열기
+      window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(targetUrl);
+    } else if (userAgent.match(/line/i)) {
+      // 라인 외부 브라우저로 열기
+      if (targetUrl.indexOf('?') !== -1) {
+        window.location.href = targetUrl + '&openExternalBrowser=1';
+      } else {
+        window.location.href = targetUrl + '?openExternalBrowser=1';
+      }
+    } else if (userAgent.match(inAppBrowserPattern)) {
+      // 기타 인앱 브라우저 처리
+      if (/iphone|ipad|ipod/i.test(userAgent)) {
+        // iOS의 경우 Safari로 열도록 안내 메시지 표시
+        setShowSafariMessage(true);
+      } else {
+        // Android의 경우 Chrome으로 열기
+        window.location.href = 'intent://' + targetUrl.replace(/https?:\/\//i, '') + '#Intent;scheme=http;package=com.android.chrome;end';
+      }
+    } else if (/android/i.test(userAgent)) {
+      // 일반 Android 사용자 딥링크 시도
+      window.location.href = 'fashionandstyle://';
       setTimeout(() => {
-        setShowModal(true); // 딥링크 실패 시 모달을 띄워 사용자를 안내
+        setShowModal(true); // 딥링크 실패 시 모달 표시
       }, 2000);
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      // iOS 사용자일 경우 딥링크 시도 후 앱 스토어로 리다이렉트
-      window.location = "fashionandstyle://";
+    } else if (/iphone|ipad|ipod/.test(userAgent) && !window.MSStream) {
+      // 일반 iOS 사용자 딥링크 시도
+      window.location.href = 'fashionandstyle://';
       setTimeout(() => {
-        setShowModal(true); // 딥링크 실패 시 모달을 띄워 사용자를 안내
+        setShowModal(true); // 딥링크 실패 시 모달 표시
       }, 2000);
+    } else {
+      // 그 외의 경우 처리
+      window.location.href = "https://www.fashionandstyle.com";
     }
   };
 
@@ -41,32 +57,87 @@ function BridgePage() {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
     if (/android/i.test(userAgent)) {
-      window.location = "https://play.google.com/store/apps/details?id=com.fas.android";
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      window.location = "https://apps.apple.com/app/id1620312420";
+      window.location.href = "https://play.google.com/store/apps/details?id=com.fas.android";
+    } else if (/iphone|ipad|ipod/i.test(userAgent) && !window.MSStream) {
+      window.location.href = "https://apps.apple.com/app/id1620312420";
     }
+  };
+
+  // Safari로 리다이렉트하는 함수
+  const redirectToSafari = () => {
+    copyToClipboard(window.location.href);
+    alert('URL 주소가 복사되었습니다.\n\nSafari가 열리면 주소창을 길게 터치한 뒤, "붙여넣기 및 이동"을 누르면 정상적으로 이용하실 수 있습니다.');
+    window.location.href = 'x-web-search://?';
+  };
+
+  // 클립보드에 텍스트를 복사하는 함수
+  const copyToClipboard = (text) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
   };
 
   return (
     <>
       <div>
-        <h1>브릿지 페이지 입니다.</h1>
-        <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
-        {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>앱 열기 실패</h2>
-              <p>앱을 여는 데 실패했습니다. 앱스토어로 이동하여 앱을 설치하거나 다시 시도하세요.</p>
-              <button onClick={handleStoreRedirect}>앱스토어로 이동</button>
-              <button onClick={handlePageLoad}>다시 시도</button>
+        {showSafariMessage ? (
+          // Safari로 안내하는 메시지 표시
+          <div>
+            <h2 style={{ paddingTop: '50px', textAlign: 'center' }}>
+              인앱브라우저 호환 문제로 인해<br />Safari로 접속해야 합니다.
+            </h2>
+            <article style={{ textAlign: 'center', fontSize: '17px', wordBreak: 'keep-all', color: '#999' }}>
+              아래 버튼을 눌러 Safari를 실행해주세요.<br />
+              Safari가 열리면 주소창을 길게 터치한 뒤,<br />
+              '붙여넣기 및 이동'을 누르면 정상적으로 이용할 수 있습니다.<br /><br />
+              <button
+                onClick={redirectToSafari}
+                style={{
+                  minWidth: '180px',
+                  marginTop: '10px',
+                  height: '54px',
+                  fontWeight: '700',
+                  backgroundColor: '#31408E',
+                  color: '#fff',
+                  borderRadius: '4px',
+                  fontSize: '17px',
+                  border: '0',
+                }}
+              >
+                Safari로 열기
+              </button>
+            </article>
+            <img
+              style={{ width: '70%', margin: '50px 15% 0 15%' }}
+              src='https://tistory3.daumcdn.net/tistory/1893869/skin/images/inappbrowserout.jpeg'
+              alt='Safari 안내 이미지'
+            />
+          </div>
+        ) : (
+          // 기본 브릿지 페이지 내용
+          <div>
+            <h1>브릿지 페이지 입니다.</h1>
+            <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
+            {showModal && (
+              <div className="modal">
+                <div className="modal-content">
+                  <h2>앱 열기 실패</h2>
+                  <p>앱을 여는 데 실패했습니다. 앱스토어로 이동하여 앱을 설치하거나 다시 시도하세요.</p>
+                  <button onClick={handleStoreRedirect}>앱스토어로 이동</button>
+                  <button onClick={handlePageLoad}>다시 시도</button>
+                </div>
+              </div>
+            )}
+            <div>
+              <a id="moveToAPP" href="fashionandstyle://">앱에서 열기</a>
+              <p>또는</p>
+              <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
             </div>
           </div>
         )}
-        <div>
-          <a id="moveToAPP" href="https://www.fashionandstyle.com">앱에서 열기</a>
-          <p>또는</p>
-          <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
-        </div>
       </div>
     </>
   );
