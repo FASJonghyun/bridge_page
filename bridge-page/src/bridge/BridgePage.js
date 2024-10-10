@@ -107,34 +107,36 @@ function BridgePage() {
 
   return (
     <>
-      <Helmet>
-        <meta property="og:title" content="패션&스타일2" />
-        <meta property="og:description" content="패션&스타일2" />
-        <meta property="og:image" content="https://d1yzfoqf37d0dc.cloudfront.net/media/admin/post_images/2024/09/24/5c4d9419-b55e-42c8-8dcf-212a5187b163_20240924124908.jpg" />
-        <meta property="og:url" content="https://www.fashionandstyle.com" />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <title>패션&스타일</title>
-      </Helmet>
-      <div>
-        <h1>브릿지 페이지 입니다.</h1>
-        <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
-        {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>앱 열기 실패</h2>
-              <p>앱을 여는 데 실패했습니다. 앱스토어로 이동하여 앱을 설치하거나 다시 시도하세요.</p>
-              <button onClick={handleStoreRedirect}>앱스토어로 이동</button>
-              <button onClick={handlePageLoad}>다시 시도</button>
-            </div>
-          </div>
-        )}
+    <div>
+        <Helmet>
+            <meta property="og:title" content="패션&스타일2" />
+            <meta property="og:description" content="패션&스타일2" />
+            <meta property="og:image" content="https://d1yzfoqf37d0dc.cloudfront.net/media/admin/post_images/2024/09/24/5c4d9419-b55e-42c8-8dcf-212a5187b163_20240924124908.jpg" />
+            <meta property="og:url" content="https://www.fashionandstyle.com" />
+            <meta property="og:type" content="website" />
+            <meta name="robots" content="index, follow" />
+            <title>패션&스타일</title>
+        </Helmet>
         <div>
-          <a id="moveToAPP" href="https://www.fashionandstyle.com/">앱에서 열기</a>
-          <p>또는</p>
-          <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
+            <h1>브릿지 페이지 입니다.</h1>
+            <p>잠시 후 앱으로 이동합니다. 이동되지 않으면 앱 스토어에서 설치해주세요.</p>
+            {showModal && (
+            <div className="modal">
+                <div className="modal-content">
+                <h2>앱 열기 실패</h2>
+                <p>앱을 여는 데 실패했습니다. 앱스토어로 이동하여 앱을 설치하거나 다시 시도하세요.</p>
+                <button onClick={handleStoreRedirect}>앱스토어로 이동</button>
+                <button onClick={handlePageLoad}>다시 시도</button>
+                </div>
+            </div>
+            )}
+            <div>
+            <a id="moveToAPP" href="https://www.fashionandstyle.com/">앱에서 열기</a>
+            <p>또는</p>
+            <a href="https://apps.apple.com/app/id1620312420">앱스토어에서 설치</a>
+            </div>
         </div>
-      </div>
+    </div>
     </>
   );
 }
