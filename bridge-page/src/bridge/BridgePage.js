@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 function BridgePage() {
   const [showModal, setShowModal] = useState(false);
@@ -6,9 +6,9 @@ function BridgePage() {
   useEffect(() => {
     document.title = "패션&스타일";
     handlePageLoad();
-  }, []);
+  }, [handlePageLoad]);
 
-  const handlePageLoad = () => {
+  const handlePageLoad = useCallback(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     const targetUrl = window.location.href;
 
@@ -57,8 +57,7 @@ function BridgePage() {
       // 그 외의 경우 처리
       window.location.href = "https://www.fashionandstyle.com";
     }
-  };
-
+  }, []);
 
   const redirectFromInstagram = () => {
     const externalUrl = 'https://www.fashionandstyle.com';
